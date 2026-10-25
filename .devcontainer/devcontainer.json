@@ -1,0 +1,21 @@
+{
+  "name": "nmea-cpp",
+  "build": { "dockerfile": "Dockerfile", "context": "." },
+  "remoteUser": "ubuntu",
+  "runArgs": ["--cap-add=SYS_PTRACE", "--security-opt", "seccomp=unconfined"],
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-vscode.cpptools",
+        "ms-vscode.cmake-tools",
+        "xaver.clang-format"
+      ],
+      "settings": {
+        "cmake.generator": "Ninja",
+        "editor.formatOnSave": true,
+        "[cpp]": { "editor.defaultFormatter": "xaver.clang-format" }
+      }
+    }
+  },
+  "postCreateCommand": "g++ --version && cmake --version"
+}
